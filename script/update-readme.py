@@ -45,7 +45,7 @@ def get_md_dy_content_by_path(folder_path, files):
 def get_statistical_data(): 
   data = ''
   dir_len = len(files)
-  data = '\n\n统计数据：总数量：'+str(total)+', 已经完成' + str(dir_len) + ', 百分比例' + str(dir_len % total) + '%\n\n'
+  data = '\n\n统计数据：总数量：'+str(total)+', 已经完成 ' + str(dir_len) + ' , 百分比例 ' + str(dir_len % total) + '%\n\n'
   return data
   
   
@@ -63,8 +63,6 @@ def get_md_content():
   return md_content
 
 
-  
-
 # 更新markdown内容 
 def update_readme_md(file_path, content):
   if os.path.isfile(file_path):
@@ -73,11 +71,11 @@ def update_readme_md(file_path, content):
   else:
       with open(file_path, 'x') as file:
           file.write(content)
-          
-
   
 def run():
   content = get_md_content()
   update_readme_md(output_path, content)
   
 run()
+
+
