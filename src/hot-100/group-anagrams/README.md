@@ -30,6 +30,8 @@
 0 <= strs[i].length <= 100
 strs[i] 仅包含小写字母
 
+## 题解
+
 ```js
 /**
  * @param {string[]} strs
