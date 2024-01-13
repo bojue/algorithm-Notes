@@ -10,7 +10,16 @@ output_path = './README.md'
 # 文件标题
 md_header = 'Algorithm'
 # 文件标题描述
-md_header_description = '`Bojue` 前端算法笔记'
+md_header_description = """
+
+`Bojue` 前端算法笔记
+
+## 执行目录生成和统计脚本
+
+```shell
+python3 ./script/update-readme.py
+```
+"""
 
 
 files = os.listdir(folder_path)
@@ -45,7 +54,7 @@ def get_md_dy_content_by_path(folder_path, files):
 def get_statistical_data(): 
   data = ''
   dir_len = len(files)
-  data = '\n\n统计数据：总数量：'+str(total)+', 已经完成 ' + str(dir_len) + ' , 百分比例 ' + str(dir_len % total) + '%\n\n'
+  data = '\n\n统计数据 => 总数量：<font color="#336df4" >'+ str(total)+'</font>  , 已经完成 <font color="#1dddae" >'+ str(dir_len) + '</font> , 百分比例 <font color="#1dddae" >' + str(dir_len % total) + '%</font>\n\n'
   return data
   
   
