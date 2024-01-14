@@ -17,7 +17,11 @@ md_header_description = """
 ## 执行目录生成和统计脚本
 
 ```shell
-python3 ./script/update-readme.py
+
+# mac上执行
+# window要自测
+
+python3 script-update-readme.py
 ```
 """
 
@@ -42,7 +46,11 @@ def get_md_dy_content_by_path(folder_path, files):
     isFile = os.path.isfile(file_path)
   
     if isDir:
-      md_file_path = os.path.join(folder_path, file_name, "README.md")
+      file = folder_path +'/'+ file_name +'/'+"README.md"
+      isExists = os.path.exists(file)
+      if not isExists:
+        continue
+      md_file_path = os.path.join(file)
       md_file = open(md_file_path, 'r') 
       md_line = md_file.read()
       md_content_line = '[' + get_md_first_header(md_line)  +'](' + md_file_path+ ')\n\n'

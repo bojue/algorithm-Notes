@@ -6,13 +6,17 @@
 ## 执行目录生成和统计脚本
 
 ```shell
-python3 ./script/update-readme.py
+
+# mac上执行
+# window要自测
+
+python3 script-update-readme.py
 ```
 
 
 
-统计数据 => 总数量：<font color="#336df4" >100</font>  , 已经完成 <font color="#1dddae" >38</font> , 百分比例 <font color="#1dddae" >38%</font>
-Z吧前问の
+统计数据 => 总数量：<font color="#336df4" >100</font>  , 已经完成 <font color="#1dddae" >41</font> , 百分比例 <font color="#1dddae" >41%</font>
+
 
 [70. 爬楼梯](src/hot-100/climbing-staris/README.md)
 
@@ -46,6 +50,8 @@ Z吧前问の
 
 [24. 两两交换链表中的节点](src/hot-100/swap-nodes-in-pairs/README.md)
 
+[35. 搜索插入位置](src/hot-100/search-insert-position/README.md)
+
 [55. 跳跃游戏](src/hot-100/jump-game/README.md)
 
 [64. 最小路径和](src/hot-100/minimum-path-sum/README.md)
@@ -53,6 +59,8 @@ Z吧前问の
 [142. 环形链表 II](src/hot-100/linked-list-cycle-ii/README.md)
 
 [3. 无重复字符的最长子串](src/hot-100/longest-substring-without-repeating-characters/README.md)
+
+[15. 三数之和](src/hot-100/3sum/README.md)
 
 [283. 移动零](src/hot-100/move-zeroes/README.md)
 
