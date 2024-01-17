@@ -3,6 +3,19 @@
 
 `Bojue` 前端算法笔记
 
+## 执行自动创建题目READM
+
+
+```shell
+
+# mac上执行
+# window要自测
+
+python3 script-create-readme.py
+```
+
+
+
 ## 执行目录生成和统计脚本
 
 ```shell
@@ -15,7 +28,8 @@ python3 script-update-readme.py
 
 
 
-统计数据 => 总数量：<font color="#336df4" >100</font>  , 已经完成 <font color="#1dddae" >41</font> , 百分比例 <font color="#1dddae" >41%</font>
+
+统计数据 => 总数量：<font color="#336df4" >100</font>  , 已经完成 <font color="#1dddae" >42</font> , 百分比例 <font color="#1dddae" >42%</font>
 
 
 [70. 爬楼梯](src/hot-100/climbing-staris/README.md)
@@ -69,6 +83,8 @@ python3 script-update-readme.py
 [394. 字符串解码](src/hot-100/decode-string/README.md)
 
 [53. 最大子数组和](src/hot-100/maximum-subarray/README.md)
+
+[437. 路径总和 III](src/hot-100/path-sum-iii/README.md)
 
 [104. 二叉树的最大深度](src/hot-100/maximum-depth-of-binary-tree/README.md)
 

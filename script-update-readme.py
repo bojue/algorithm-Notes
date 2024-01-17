@@ -14,6 +14,19 @@ md_header_description = """
 
 `Bojue` 前端算法笔记
 
+## 执行自动创建题目READM
+
+
+```shell
+
+# mac上执行
+# window要自测
+
+python3 script-create-readme.py
+```
+
+
+
 ## 执行目录生成和统计脚本
 
 ```shell
@@ -23,6 +36,7 @@ md_header_description = """
 
 python3 script-update-readme.py
 ```
+
 """
 
 

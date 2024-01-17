@@ -3,7 +3,6 @@ import requests
 import re
 import os
 
-
 pattern = re.compile(r'^(\d+\..+?)\s-\s(.+)$', re.DOTALL)
 md_page_content = """
 # {title}
@@ -47,6 +46,8 @@ def get_md_content(content):
     if matches:
        title = matches.group(1)
        description = matches.group()
+       print(title)
+       
        md_content = md_page_content.replace('{title}', title).replace('{description}',description)
        return md_content
     
@@ -75,10 +76,11 @@ def get_page(page):
 
     createFolderAndMdFile(page, md_content)
 
-def run(page_array): 
+def run():
+    
+    page_array = ['path-sum-iii']
+    
     for page in page_array:
         get_page(page)
-        
-
-page_array = ['path-sum-iii','convert-sorted-array-to-binary-search-tree']      
-run(page_array)
+       
+run()
