@@ -53,13 +53,17 @@ def get_md_content(content):
 def createFolderAndMdFile(folder, md_content):
     folder_path = 'src/hot-100/' + folder
     readme_path = os.path.join(folder_path, 'README.md')
-    if not os.path.exists(folder_path):
-       os.makedirs(folder_path)
-       with open(readme_path, 'w') as file:
-           file.write(md_content)
-           print('文件创建成功')
-    else:
-        print('文件已经存在', folder)
+    try:
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+            with open(readme_path, 'w') as file:
+                file.write(md_content)
+                print('文件创建成功')
+        else:
+            print('文件已经存在', folder)
+    except e:
+        print('异常', e)
+        
     
 
 def get_page(page):
@@ -67,9 +71,12 @@ def get_page(page):
     page_url = url.replace('{page}', page)
     # 根据页面url获取页面内容
     request_page_response = requests.get(page_url)
-
+    
+    print(page_url)
     # 获取页面描述部分
     md_content_description = get_page_description_by_request(request_page_response, 'description')
+    
+    print(md_content_description, md_content_description)
     # 获取 Markdown 内容部分
     md_content = get_md_content(md_content_description) 
 
@@ -80,5 +87,5 @@ def run(page_array):
         get_page(page)
         
 
-page_array = ['path-sum-iii','convert-sorted-array-to-binary-search-tree']      
+page_array = ['lowest-common-ancestor-of-a-binary-tree']      
 run(page_array)
