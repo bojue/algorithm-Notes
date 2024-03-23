@@ -87,5 +87,5 @@ def run(page_array):
         get_page(page)
         
 
-page_array = ['lowest-common-ancestor-of-a-binary-tree']      
+page_array = ['find-all-anagrams-in-a-string']      
 run(page_array)

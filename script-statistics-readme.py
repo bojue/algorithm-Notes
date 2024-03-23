@@ -12,9 +12,13 @@ md_header = 'Algorithm'
 # 文件标题描述
 md_header_description = """
 
+## 构建脚本
+
 `Bojue` 前端算法笔记
 
-## 执行自动创建题目READM
+### 1. 根据题目自动创建题目（手动更新）
+
+场景：完成题目，根据题目名称创建对应的题目笔记
 
 
 ```shell
@@ -26,16 +30,48 @@ python3 script-create-readme.py
 ```
 
 
+### 2. 更新最新的数据（自动更新）
 
-## 执行目录生成和统计脚本
+场景：习题题解更新，可以执行全部更新算法笔记，获取全部的最新笔记内容，题解只获取最新通过的题目
+
+
+1. 配置config.json，统计leetcode接口需要
+
+```shell
+
+{
+  "csrftoken": "",
+  "Cookie": ""
+}
+```
+
+
+2. 执行统计脚本
+
 
 ```shell
 
 # mac上执行
 # window要自测
 
-python3 script-update-readme.py
+python3 script-update-latest.py
 ```
+
+
+
+### 3. 更新统计README
+
+场景：更新完毕题目笔记，更新最新的统计数据
+
+```shell
+
+# mac上执行
+# window要自测
+
+python3 script-statistics-readme.py
+```
+
+## 题目统计
 
 """
 
@@ -77,6 +113,7 @@ def get_statistical_data():
   data = ''
   dir_len = len(files)
   data = '\n\n统计数据 => 总数量：<font color="#336df4" >'+ str(total)+'</font>  , 已经完成 <font color="#1dddae" >'+ str(dir_len) + '</font> , 百分比例 <font color="#1dddae" >' + str(dir_len % total) + '%</font>\n\n'
+  data += '## 题目列表'
   return data
   
   
