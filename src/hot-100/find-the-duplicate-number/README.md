@@ -61,5 +61,29 @@
 
 
 ```ts
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findDuplicate = function(nums) {
+    let len = nums.length 
+    let left = 0
+    let right = len 
 
+    while(left < right) {
+        let  mid = (left + right ) >> 1
+        let count  = 0
+        for(let i=0;i<nums.length;i++) {
+            count += nums[i] <= mid
+        }
+
+        if(count <= mid) {
+            left = mid + 1
+        } else {
+            right = mid
+        }
+    }
+
+    return right
+};
 ````

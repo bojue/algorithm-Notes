@@ -77,6 +77,9 @@ python3 script-statistics-readme.py
 
 
 files = os.listdir(folder_path)
+completion_status_count = 0
+
+pattern = r"```ts\n([\s\S]+?)\n```"
 
 def get_md_first_header(content):
   pattern = r'^#\s+(.*)$'
@@ -85,6 +88,14 @@ def get_md_first_header(content):
     return match.group(1)
   else:
     return None
+  
+def get_ts_code_bool(content):
+  matches = re.findall(pattern, content)
+  if matches:
+    return True 
+  else:
+    return False
+  
 
 # 获取文档动态内容
 def get_md_dy_content_by_path(folder_path, files):
@@ -103,16 +114,20 @@ def get_md_dy_content_by_path(folder_path, files):
       md_file_path = os.path.join(file)
       md_file = open(md_file_path, 'r') 
       md_line = md_file.read()
-      md_content_line = '[' + get_md_first_header(md_line)  +'](' + md_file_path+ ')\n\n'
-      md_content += md_content_line
+
+      if get_ts_code_bool(md_line) == True:
+        md_content_line = '[' + get_md_first_header(md_line)  +'](' + md_file_path+ ')\n\n'
+        md_content += md_content_line
+        global completion_status_count
+        completion_status_count = completion_status_count + 1
+        
   
   return md_content
 
 # 获取统计数据
 def get_statistical_data(): 
   data = ''
-  dir_len = len(files)
-  data = '\n\n统计数据 => 总数量：<font color="#336df4" >'+ str(total)+'</font>  , 已经完成 <font color="#1dddae" >'+ str(dir_len) + '</font> , 百分比例 <font color="#1dddae" >' + str(dir_len % total) + '%</font>\n\n'
+  data = '\n\n统计数据 => 总数量：<font color="#336df4" >'+ str(total)+'</font>  , 已经完成 <font color="#1dddae" >'+ str(completion_status_count) + '</font> , 百分比例 <font color="#1dddae" >' + str(completion_status_count % total) + '%</font>\n\n'
   data += '## 题目列表'
   return data
   
@@ -122,8 +137,10 @@ def get_md_content():
   # md文档内容
   md_content = ''
   md_header_content = "# " + md_header + '\n' + md_header_description + '\n'
-  md_statistical = get_statistical_data()
   md_dy_content = get_md_dy_content_by_path(folder_path, files)
+  
+  print(completion_status_count)
+  md_statistical = get_statistical_data()
   
   # 完成内容拼装
   md_content = md_header_content + md_statistical +  md_dy_content

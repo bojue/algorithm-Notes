@@ -48,5 +48,40 @@
 
 
 ```ts
+function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
+    let len1 = nums1.length 
+    let len2 = nums2.length 
+    let len = len1 + len2
+    let nums = []
+    let curr = 0;
+    let i = 0;
+    let j = 0;
 
+    while(curr !== len) {
+        if(i === len1) {
+            while(j != len2) {
+                nums[curr++] = nums2[j++]
+            }
+
+            break;
+        }
+
+        if(j === len2) {
+            while(i != len1) {
+                nums[curr++] = nums1[i++]
+            }
+            break;
+        }
+
+    
+        if(nums1[i] > nums2[j]) {
+            nums[curr++] = nums2[j++]
+        } else {
+            nums[curr++] = nums1[i++]
+        }
+    }
+
+    const data = curr % 2 != 0 ? nums[(curr-1)/2]: ((nums[curr/2 -1] + nums[curr /2 ]) / 2.0)  
+    return data
+};
 ````

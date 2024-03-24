@@ -47,5 +47,42 @@
 
 
 ```ts
+function searchRange(nums: number[], target: number): number[] {
+    let len = nums.length
+    let left = 0
+    let right = len -1
 
+    let start = -1
+    let end = -1
+
+    while(left <=right) {
+        const mid = Math.floor((left + right) / 2)
+        const midData = nums[mid]
+        if(midData === target) {
+            start = mid 
+            right = mid - 1
+        } else if(midData < target) {
+            left = mid + 1
+        } else {
+            right = mid -1
+        }
+    }
+    left = 0
+    right = len -1
+
+    while(left <= right) {
+        const mid = Math.floor((left+ right) /2) 
+        const midData = nums[mid]
+        if(midData === target) {
+            end = mid
+            left = mid + 1 
+        } else if(midData < target) {
+            left = mid  + 1
+        } else {
+            right = mid - 1
+        }
+    }
+
+    return [start, end]
+};
 ````

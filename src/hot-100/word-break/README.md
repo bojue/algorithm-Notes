@@ -56,5 +56,26 @@
 
 
 ```ts
+/**
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+var wordBreak = function(s, wordDict) {
+    const len = s.length
+    const wdSetData = new Set(wordDict)
+    const dp = new Array(len+1).fill(false)
+    dp[0] = true
 
+    for(let i=1;i<=len;i++) {
+        for(j=0;j<i;j++) {
+            if(dp[j] && wdSetData.has(s.substr(j,i-j))) {
+                dp[i] = true
+                break
+            }
+        }
+    }
+    
+    return dp[len]
+};
 ````

@@ -41,5 +41,25 @@
 
 
 ```ts
+function maxProduct(nums: number[]): number {
+    let maxVal = nums[0]
+    let minVal = nums[0]
+    let result = maxVal
+    for(let i=1;i<nums.length;i++) {
+        let maxMiddleVal = maxVal || 1
+        let minMiddleVal = minVal || 1
+        let item = nums[i] 
+        let data = [0, 0]
+        if(item !== 0) {
+             data = [
+                Math.max(item * maxMiddleVal, item * minMiddleVal, item),
+                Math.min(item * maxMiddleVal, item * minMiddleVal, item)
+            ]
+        }
 
+        [maxVal, minVal] = data
+        result = Math.max(result, maxVal)
+    }
+    return result
+};
 ````

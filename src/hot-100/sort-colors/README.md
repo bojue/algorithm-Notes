@@ -49,5 +49,33 @@
 
 
 ```ts
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var sortColors = function(nums) {
+    const len = nums.length
+    let curr = 0;
+    let right = len -1
+    let tempIndex = 0
 
+    const swap = function(a, b) {
+        const temp = nums[b]
+        nums[b] = nums[a]
+        nums[a] = temp
+    }
+    while(curr <= right) {
+        const item = nums[curr]
+        if(item === 0) {
+            swap(curr, tempIndex)
+            curr++
+            tempIndex++
+        } else if(item === 2) {
+            swap(curr, right)
+            right--
+        } else {
+            curr++
+        }
+    }
+};
 ````

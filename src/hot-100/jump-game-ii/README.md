@@ -48,5 +48,19 @@
 
 
 ```ts
+function jump(nums: number[]): number {
+    let len = nums.length
+    let step = 0;
+    let end = 0;
+    let maxPositon = 0
+    for(let i =0;i<len -1;i++) {
+        maxPositon = Math.max(maxPositon, i + nums[i])
+        if(i === end) {
+            end = maxPositon
+            step++
+        }
+    }
 
+    return step
+};
 ````

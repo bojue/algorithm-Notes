@@ -51,5 +51,44 @@ medianFinder.findMedian(); // return 2.0
 
 
 ```ts
+class MedianFinder {
+    nums: number[]
+    constructor() {
+        this.nums = []
+    }
 
+    addNum(num: number): void {
+        let left = 0;
+        let right = this.nums.length -1
+        while(left <= right) {
+            const mid = Math.floor((left + right) /2)
+            if(this.nums[mid] === num) {
+                this.nums.splice(mid, 0, num)
+                return 
+            } else if(this.nums[mid] < num) {
+                left = mid + 1
+            } else {
+                right = mid -1
+            }
+        }
+        this.nums.splice(left, 0, num)
+    }
+
+    findMedian(): number {
+        let len = this.nums.length 
+        let mid = Math.floor(len /2)
+        if(len % 2) {
+            return this.nums[mid]
+        } else {
+            return (this.nums[mid] + this.nums[mid -1])/2
+        }
+    }
+}
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * var obj = new MedianFinder()
+ * obj.addNum(num)
+ * var param_2 = obj.findMedian()
+ */
 ````

@@ -60,5 +60,18 @@
 
 
 ```ts
-
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var decodeString = function(s) {
+    const pattern = /(\d+)\[([^\[\]]+)\]/g
+    function replaceHandle (match, count, word) {
+        return word.repeat(Number(count))
+    }
+    while(pattern.test(s)) {
+        s = s.replace(pattern, replaceHandle)
+    }
+    return s;
+};
 ````

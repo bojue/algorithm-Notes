@@ -47,5 +47,32 @@
 
 
 ```ts
+function longestValidParentheses(s: string): number {
+    const stack = []
+    let start = -1
+    let maxVal = 0
+    let len = s.length;
 
+    for(let i=0;i<len;i++) {
+        let item = s[i]
+        if(item === '(') {
+            stack.push(i)
+        } else {
+            if(stack.length === 0) {
+                start = i
+            } else {
+                stack.pop()
+                if(stack.length === 0) {
+                    maxVal = Math.max(maxVal,  i - start)
+                } else {
+                    maxVal = Math.max(maxVal, i - stack[stack.length -1])
+                }
+            }
+        }
+    }
+
+    return maxVal
+
+
+};
 ````

@@ -46,5 +46,25 @@
 
 
 ```ts
+function partitionLabels(s: string): number[] {
+    let result = []
+    let len = s.length 
+    let map = new Map()
 
+    for(let i=0;i<len;i++) {
+        map.set(s.charAt(i), i)
+    }
+
+    let pre = 0;
+    let max = 0;
+    for(let i=0;i<len;i++) {
+        max = Math.max(max, map.get(s.charAt(i)))
+        if(i === max) {
+            result.push(max - pre +1)
+            pre = i +1
+        }
+    }
+
+    return result
+};
 ````

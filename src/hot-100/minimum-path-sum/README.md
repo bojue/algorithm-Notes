@@ -45,5 +45,31 @@
 
 
 ```ts
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var minPathSum = function(grid) {
+   let result = Number.MAX;
+   let rowLen = grid.length 
+   let colLen = grid[0].length 
 
+   for(let i=0;i<rowLen;i++) {
+       for(let j=0;j<colLen;j++) {
+           if(!i && !j) {
+               continue
+           }
+           if(i === 0) {
+              grid[i][j] += grid[i][j-1]
+           } else if(j === 0) {
+              grid[i][j] += grid[i-1][j]
+           } else {
+                grid[i][j] += Math.min(grid[i-1][j], grid[i][j-1]) 
+           }
+          
+       }
+   }
+
+   return  grid[rowLen -1][colLen -1] 
+};
 ````

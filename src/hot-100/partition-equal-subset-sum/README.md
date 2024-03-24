@@ -38,5 +38,22 @@
 
 
 ```ts
+function canPartition(nums: number[]): boolean {
+    const sum = nums.reduce((a, b) => a + b, 0)
+    if(sum % 2 === 1) {
+        return false
+    }
 
+    const target = sum / 2
+    const dp = new Array(target+1).fill(false)
+    const len = nums.length 
+    for(let i=0;i<=len;i++) {
+        for(let j=target;j>=0;j--) {
+            if(j - nums[i] >= 0) {
+                dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i])
+            }
+        }
+    }
+    return dp[target] === target
+};
 ````

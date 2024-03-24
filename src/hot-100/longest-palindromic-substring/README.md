@@ -40,5 +40,31 @@
 
 
 ```ts
+function longestPalindrome(s: string): string {
+    let res = ''
+
+    const len = s.length 
+
+    for(let i=0;i<len;i++) {
+        const s1 = palindromeHandler(s, i, i) 
+        const s2 =  palindromeHandler(s, i, i+1)
+
+        res = res.length > s1.length ? res : s1
+        res = res.length > s2.length ? res: s2;
+    }    
+
+    return res
+};
+
+function palindromeHandler(str: string ,left: number, right: number) {
+    while(left >= 0 && right < str.length && str[left] === str[right]) {
+        left--
+        right++
+    }
+
+    return str.substr(left+1, right - left -1)
+}
+
+
 
 ````

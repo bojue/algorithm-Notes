@@ -43,5 +43,36 @@
 
 
 ```ts
+function findKthLargest(nums: number[], k: number): number {
+  let res = 0
 
+  function quickSort(nums, k) {
+    if(!nums.length) {
+        return 
+    }
+
+    const pivotIndex = nums.length >> 1;
+    const pivot = nums[pivotIndex]
+
+    const left = nums.filter(item => item < pivot)
+    const mid = nums.filter(item => item == pivot)
+    const right = nums.filter(item => item > pivot)
+
+    const leftLen = left.length - 1
+    const rightStartIndex = left.length + mid.length
+
+    if(k <= leftLen) {
+        quickSort(left, k)
+    } else if(k > leftLen && k < rightStartIndex) {
+        res = mid[0]  
+    } else {
+        quickSort(right, k - rightStartIndex)
+    }
+
+
+  }
+
+  quickSort(nums, nums.length - k)
+  return res;  
+};
 ````

@@ -44,5 +44,27 @@
 
 
 ```ts
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function(temperatures) {
+    let len = temperatures.length
+    let stack = []
+    const res = new Array(len).fill(0)
+    for(let i = len-1;i>=0;i--) {
+        const item = temperatures[i]
+        while(stack.length && item >= temperatures[stack[stack.length-1]]) {
+            stack.pop();
+        }
 
+        if(stack.length){
+            res[i] = stack[stack.length -1] -i
+        }
+        
+        stack.push(i)
+    }
+
+    return res
+};
 ````

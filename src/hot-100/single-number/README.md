@@ -47,5 +47,14 @@
 
 
 ```ts
+function singleNumber(nums: number[]): number {
+    let ans = nums[0]
+    let len = nums.length 
 
+    for(let i=1;i<len;i++) {
+        ans ^= nums[i]
+    }
+
+    return ans
+};
 ````

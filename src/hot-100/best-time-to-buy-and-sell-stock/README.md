@@ -44,5 +44,20 @@
 
 
 ```ts
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    const len = prices.length 
+    let max = 0
+    let min = Number.MAX_VALUE
 
+    for(let i=0;i<len;i++) {
+        let item = prices[i]
+        max = Math.max(max, item - min)
+        min = Math.min(min, item)
+    }
+    return max
+};
 ````

@@ -45,5 +45,23 @@
 
 
 ```ts
+function majorityElement(nums: number[]): number {
+    const map = new Map()
+    let maxCount = 0;
+    let max = 0
 
+    for(let num of nums) {
+        const curr = (map.get(num) || 0) + 1
+        map.set(num, curr)
+        maxCount = Math.max(curr, maxCount)
+        if(maxCount === curr) {
+            max = num
+        }
+
+    }
+
+    
+
+    return  max
+};
 ````

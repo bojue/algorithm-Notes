@@ -50,5 +50,38 @@
 
 
 ```ts
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    let listData = s.split('')
+    let len = listData.length 
+    let list = []
+    let dataMap = {
+        '}': '{',
+        ']': '[',
+        ')': '('
+    }
 
+    if(len % 2) {
+        return false
+    }
+
+    for(let i=0;i<len;i++) {
+        let item = listData[i]
+        const isLeft = !dataMap[item]
+        if(isLeft) {
+            list.push(item)
+        } else {
+            const last = list.pop()
+            if(dataMap[item] !== last) {
+                return false
+            } 
+        }
+    }
+
+
+    return !list.length
+};
 ````
