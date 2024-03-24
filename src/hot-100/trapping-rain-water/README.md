@@ -1,7 +1,13 @@
 
 # 42. 接雨水
 
-## 分类
+## 相关标签
+
+- 栈
+- 数组
+- 双指针
+- 动态规划
+- 单调栈
 
 ## 问题描述 
 
@@ -36,3 +42,32 @@
 
 ## 题解
 
+
+```ts
+function trap(height: number[]): number {
+    let res = 0
+    let len = height.length - 1
+
+    if(len <= 1) {
+        return res
+    }
+    
+    let left = 0;
+    let right = len 
+    let maxLeft = 0
+    let maxRight = 0;
+    while(left < right) {
+        maxLeft = Math.max(maxLeft, height[left])
+        maxRight = Math.max(maxRight, height[right])
+        if(height[left] < height[right]) {
+            res += maxLeft - height[left]
+            left++
+        } else {
+            res += maxRight - height[right]
+            right--
+        }
+    }
+
+    return res
+};
+````

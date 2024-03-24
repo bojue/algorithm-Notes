@@ -1,7 +1,12 @@
 
 # 98. 验证二叉搜索树
 
-## 分类
+## 相关标签
+
+- 树
+- 深度优先搜索
+- 二叉搜索树
+- 二叉树
 
 ## 问题描述 
 
@@ -43,3 +48,40 @@
 
 ## 题解
 
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function isValidBST(root: TreeNode | null): boolean {
+    if(!root) {
+        return true
+    }
+
+    return helper(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+};
+
+function helper(root: TreeNode | null, min: number, max: number) {
+    if(!root ) {
+        return true
+    }
+
+    if(root.val <= min || root.val >= max) {
+        return false
+    }
+
+    return helper(root.left, min, root.val)
+     && helper(root.right, root.val, max)
+}
+````

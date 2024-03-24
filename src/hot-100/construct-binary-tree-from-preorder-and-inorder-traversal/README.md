@@ -1,7 +1,13 @@
 
 # 105. 从前序与中序遍历序列构造二叉树
 
-## 分类
+## 相关标签
+
+- 树
+- 数组
+- 哈希表
+- 分治
+- 二叉树
 
 ## 问题描述 
 
@@ -39,3 +45,32 @@
 
 ## 题解
 
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
+    if(!preorder.length ) {
+        return null
+    }
+    const head = preorder[0]
+    const root = new TreeNode(head)
+    const index = inorder.findIndex(item => item === head)
+    root.left  = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index))
+    root.right = buildTree(preorder.slice(index+1), inorder.slice(index + 1))
+
+    return root
+};
+````

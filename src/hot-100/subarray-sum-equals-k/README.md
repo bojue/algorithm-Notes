@@ -1,7 +1,11 @@
 
 # 560. 和为 K 的子数组
 
-## 分类
+## 相关标签
+
+- 数组
+- 哈希表
+- 前缀和
 
 ## 问题描述 
 
@@ -35,3 +39,23 @@
 
 ## 题解
 
+
+```ts
+function subarraySum(nums: number[], k: number): number {
+    const map = new Map()
+    map.set(0, 1)
+    let pre = 0
+    let count = 0
+
+    for(let i=0;i<nums.length;i++) {
+        pre +=  nums[i]
+
+        if(map.has(pre -k)) {
+            count += map.get(pre -k)
+        }
+        map.set(pre,  map.has(pre)? map.get(pre) + 1 : 1)
+    }
+
+    return count
+};
+````

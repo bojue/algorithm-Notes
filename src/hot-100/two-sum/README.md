@@ -1,7 +1,10 @@
 
 # 1. 两数之和
 
-## 分类
+## 相关标签
+
+- 数组
+- 哈希表
 
 ## 问题描述 
 
@@ -50,3 +53,19 @@
 
 ## 题解
 
+
+```ts
+function twoSum(nums: number[], target: number): number[] {
+    const map = new Map()
+    for(let i =0;i<nums.length;i++) {
+      let item = nums[i]
+      if(map.has(target - item)) {
+        return [i, map.get(target - item)]
+      } else {
+        map.set(item, i)
+      } 
+    }
+
+    return []
+};
+````

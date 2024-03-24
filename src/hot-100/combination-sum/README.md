@@ -1,7 +1,10 @@
 
 # 39. 组合总和
 
-## 分类
+## 相关标签
+
+- 数组
+- 回溯
 
 ## 问题描述 
 
@@ -47,3 +50,37 @@ candidates 中的 同一个 数字可以 无限制重复被选取 。如果至�
 
 ## 题解
 
+
+```ts
+function combinationSum(candidates: number[], target: number): number[][] {
+    const result = []
+    candidates.sort((a, b) => a -b)
+    backtrace(result, 0, candidates, target, [])
+    return result
+};
+
+function backtrace(result, start, candidates, target, path) {
+    if(target < 0) return 
+    if(target === 0) {
+        result.push([...path])
+        return 
+    }
+
+    for(let i=start;i<candidates.length;i++) {
+        let num = candidates[i]
+
+        if(num > target) {
+            return 
+        }
+        path.push(num)
+        target -= num
+        backtrace(result, i, candidates, target, path)
+        path.pop()
+        target += num
+    }
+
+
+
+
+}
+````

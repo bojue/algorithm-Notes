@@ -1,7 +1,10 @@
 
 # 41. 缺失的第一个正数
 
-## 分类
+## 相关标签
+
+- 数组
+- 哈希表
 
 ## 问题描述 
 
@@ -41,3 +44,39 @@
 
 ## 题解
 
+
+```ts
+function firstMissingPositive(nums: number[]): number {
+    const len = nums.length
+    let result = nums.length + 1
+
+    if(nums.indexOf(1) === -1) {
+        return 1
+    }
+    for(let i=0;i<len;i++) {
+        if(nums[i] <=0) {
+            nums[i] = 1
+        }
+    }
+
+    console.log(nums)
+
+    for(let i=0;i<len;i++) {
+        const num = Math.abs(nums[i])
+        if (num <= len) {
+            nums[num - 1] = -Math.abs(nums[num-1])
+        }
+    }
+
+    console.log(nums)
+
+    for(let i=0;i<len;i++) {
+        const item = nums[i]
+        if(item > 0) {
+            return i + 1
+        }
+    }
+
+    return result
+};
+````

@@ -1,7 +1,12 @@
 
 # 94. 二叉树的中序遍历
 
-## 分类
+## 相关标签
+
+- 栈
+- 树
+- 深度优先搜索
+- 二叉树
 
 ## 问题描述 
 
@@ -45,3 +50,32 @@
 
 ## 题解
 
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function inorderTraversal(root: TreeNode | null): number[] {
+    const result = []
+    preorder(root, result)
+    return result
+};
+
+function preorder(root, result) {
+    if(!root) return
+    preorder(root.left, result)
+    result.push(root.val)
+    preorder(root.right, result)
+}
+````

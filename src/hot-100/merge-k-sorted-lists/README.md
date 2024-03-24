@@ -1,7 +1,12 @@
 
 # 23. 合并 K 个升序链表
 
-## 分类
+## 相关标签
+
+- 链表
+- 分治
+- 堆（优先队列）
+- 归并排序
 
 ## 问题描述 
 
@@ -50,3 +55,56 @@
 
 ## 题解
 
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+    const len = lists.length 
+    if(!len) {
+        return null
+    }
+
+    if(len === 1) {
+        return lists[0]
+    }
+    let result = null
+    for(let i=0;i<len;i++) {
+        result = merge(result, lists[i])
+    }
+
+    return result
+};
+
+function merge(l1, l2) {
+    const newHead =  new ListNode();
+    let curr = newHead
+    while(l1 && l2) {
+        if(l1.val < l2.val) {
+            curr.next = l1 
+            l1 = l1.next
+        } else {
+            curr.next = l2
+            l2 = l2.next
+        }
+
+        curr = curr.next
+    }
+
+    if(l1 || l2) {
+        curr.next = l1 || l2
+    }
+
+    return newHead.next
+}
+````

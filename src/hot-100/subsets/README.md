@@ -1,7 +1,11 @@
 
 # 78. 子集
 
-## 分类
+## 相关标签
+
+- 位运算
+- 数组
+- 回溯
 
 ## 问题描述 
 
@@ -35,3 +39,19 @@
 
 ## 题解
 
+
+```ts
+function subsets(nums: number[]): number[][] {
+    const result = [[]]
+
+    for(let num of nums) {
+        const sub = []
+        for(const subSet of result) {
+            sub.push([...subSet, num])
+        }
+        result.push(...sub)
+    }
+
+    return result
+};
+````

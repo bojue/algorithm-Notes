@@ -1,7 +1,11 @@
 
 # 437. 路径总和 III
 
-## 分类
+## 相关标签
+
+- 树
+- 深度优先搜索
+- 二叉树
 
 ## 问题描述 
 
@@ -38,7 +42,8 @@
 
 ## 题解
 
-```js
+
+```ts
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -78,4 +83,4 @@ var dfs = function(root, sum) {
     res+= dfs(right, sum -val)
     return res
 }
-```
+````

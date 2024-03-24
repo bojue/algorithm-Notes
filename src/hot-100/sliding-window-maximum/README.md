@@ -1,7 +1,13 @@
 
 # 239. 滑动窗口最大值
 
-## 分类
+## 相关标签
+
+- 队列
+- 数组
+- 滑动窗口
+- 单调队列
+- 堆（优先队列）
 
 ## 问题描述 
 
@@ -44,3 +50,31 @@
 
 ## 题解
 
+
+```ts
+function maxSlidingWindow(nums: number[], k: number): number[] {
+    let result = []
+    let queue = []
+
+    let len = nums.length 
+
+    for(let i=0;i<len;i++) {
+        // 移除窗口外的数据
+        while(queue.length && queue[0] === i -k) {
+            queue.shift()
+        }
+
+        while(queue.length && nums[ queue[queue.length - 1] ]< nums[i]) {
+            queue.pop()
+        }
+
+        queue.push(i)
+
+        if(i >= k -1) {
+            result.push(nums[queue[0]])
+        }
+    }
+
+    return result
+};
+````

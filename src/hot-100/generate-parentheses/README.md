@@ -1,7 +1,11 @@
 
 # 22. 括号生成
 
-## 分类
+## 相关标签
+
+- 字符串
+- 动态规划
+- 回溯
 
 ## 问题描述 
 
@@ -31,3 +35,33 @@
 
 ## 题解
 
+
+```ts
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function(n) {
+
+    const result = []
+    
+    const def = (left, right, str) => {
+        const len = str?.length
+
+        if(len === 2 * n) {
+            result.push(str)
+        }
+
+        if(left > 0) {
+            def(left -1, right, str + '(')
+        }  
+        if(right > left) {
+            def(left, right -1, str + ')')
+        }
+
+    }
+
+    def(n , n, '')
+    return result
+};
+````

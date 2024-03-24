@@ -1,7 +1,11 @@
 
 # 17. 电话号码的字母组合
 
-## 分类
+## 相关标签
+
+- 哈希表
+- 字符串
+- 回溯
 
 ## 问题描述 
 
@@ -43,3 +47,41 @@
 
 ## 题解
 
+
+```ts
+/**
+ * @param {string} digits
+ * @return {string[]}
+ */
+var letterCombinations = function(digits) {
+    const len = digits.length 
+    const result = []
+    if(!len) {
+        return result
+    }
+    const digitsData = digits.split('')
+    const dataMap = { '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno',   '7': 'pqrs', '8': 'tuv', '9': 'wxyz' };
+
+
+    const dfs = function(str, i) {
+        if(i > len -1) {
+            result.push(str)
+            return
+        }
+        let strData =  dataMap[digitsData[i]]?.split('')
+        if(!strData) {
+            return
+        }
+        let subLen = strData.length
+
+        for(let j=0;j <subLen;j++) {
+            dfs(str + strData[j], i+1)
+        }
+
+    }
+
+    dfs('', 0)
+
+    return result
+};
+````

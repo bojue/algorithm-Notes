@@ -1,7 +1,13 @@
 
 # 200. 岛屿数量
 
-## 分类
+## 相关标签
+
+- 深度优先搜索
+- 广度优先搜索
+- 并查集
+- 数组
+- 矩阵
 
 ## 问题描述 
 
@@ -48,3 +54,37 @@
 
 ## 题解
 
+
+```ts
+/**
+ * @param {character[][]} grid
+ * @return {number}
+ */
+var numIslands = function(grid) {
+    let count = 0;
+    let row = grid.length 
+    let col = grid[0].length 
+    for(let i=0;i<row;i++) {
+        for(let j=0;j<col;j++) {
+            if(grid[i][j] === '1') {
+                count++
+                turnZero(i, j, grid)
+            }
+        }
+    }
+    return count
+};
+
+function turnZero(i, j, grid) {
+    if( i < 0 || j < 0 || i>= grid.length || j >= grid[0].length || grid[i][j] === '0') {
+        return 
+    }
+
+    grid[i][j] = '0'
+    turnZero(i + 1, j,grid)
+    turnZero(i -1, j, grid)
+    turnZero(i, j+1, grid)
+    turnZero(i, j-1, grid)
+
+}
+````

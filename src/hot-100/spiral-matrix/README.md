@@ -1,7 +1,11 @@
 
 # 54. 螺旋矩阵
 
-## 分类
+## 相关标签
+
+- 数组
+- 矩阵
+- 模拟
 
 ## 问题描述 
 
@@ -38,3 +42,41 @@
 
 ## 题解
 
+
+```ts
+function spiralOrder(matrix: number[][]): number[] {
+  const result =  []
+  const rowLen = matrix.length 
+  const colLen = matrix[0].length
+  
+  let len = rowLen * colLen
+  let left =0;
+  let top = 0;
+  let right = colLen - 1
+  let buttom = rowLen - 1
+
+  while(result.length < len) {
+    console.log('result', result.length , len)
+    for(let i = left;i<=right;i++) {
+        result.push(matrix[top][i])
+    }
+    top++
+    for(let i = top;i<=buttom  && result.length < len;i++) {
+        result.push(matrix[i][right])
+    }
+    right--
+    for(let i = right;i >=left  && result.length < len;i--) {
+        console.log(buttom, i, matrix[buttom], len)
+        result.push(matrix[buttom][i])
+    }
+    buttom--
+    for(let i = buttom;i >=top  && result.length < len;i--) {
+        result.push(matrix[i][left])
+    }
+    left++
+  }
+
+  return result
+
+};
+````

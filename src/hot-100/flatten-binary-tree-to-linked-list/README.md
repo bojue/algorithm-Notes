@@ -1,7 +1,13 @@
 
 # 114. 二叉树展开为链表
 
-## 分类
+## 相关标签
+
+- 栈
+- 树
+- 深度优先搜索
+- 链表
+- 二叉树
 
 ## 问题描述 
 
@@ -48,3 +54,39 @@
 
 ## 题解
 
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+/**
+ Do not return anything, modify root in-place instead.
+ */
+function flatten(root: TreeNode | null): void {
+    let newNode = null 
+    helper(root)
+    function helper(node: TreeNode | null) {
+        if(!node) {
+            return node
+        }
+
+        helper(node.right)
+        helper(node.left)
+        node.right = newNode
+        node.left = null
+        newNode = node
+    }
+    
+};
+````

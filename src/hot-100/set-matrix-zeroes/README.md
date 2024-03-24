@@ -1,7 +1,11 @@
 
 # 73. 矩阵置零
 
-## 分类
+## 相关标签
+
+- 数组
+- 哈希表
+- 矩阵
 
 ## 问题描述 
 
@@ -46,3 +50,32 @@
 
 ## 题解
 
+
+```ts
+/**
+ Do not return anything, modify matrix in-place instead.
+ */
+function setZeroes(matrix: number[][]): void {
+    let rowNum = matrix.length
+    let colNum = matrix[0].length
+    let rowArray = new Array(colNum).fill(false)
+    let colArray = new Array(colNum).fill(false)
+    for(let i=0; i< rowNum;i++) {
+        for(let j=0;j<colNum;j++) {
+            if(matrix[i][j]=== 0) {
+                rowArray[i] = true
+                colArray[j] = true
+            }
+        }
+    }
+
+
+    for(let i=0; i< rowNum;i++) {
+        for(let j=0;j<colNum;j++) {
+            if(rowArray[i] || colArray[j]){
+                matrix[i][j] = 0
+            }
+        }
+    }
+};
+````

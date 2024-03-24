@@ -1,7 +1,10 @@
 
 # 25. K 个一组翻转链表
 
-## 分类
+## 相关标签
+
+- 递归
+- 链表
 
 ## 问题描述 
 
@@ -44,3 +47,41 @@ k 是一个正整数，它的值小于或等于链表的长度。如果节点总
 
 ## 题解
 
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
+    let curr = head;
+    let count = 0;
+    while( curr !== null  && count !== k) {
+        curr = curr.next
+        count++
+    }
+    if(count !== k) {
+        return head;
+    }
+
+    let newHead = reverseKGroup(curr, k)
+
+    while(count> 0) {
+        const next = head.next 
+        head.next = newHead
+        newHead = head 
+        head = next
+        count--
+    }
+    return newHead
+
+};
+````

@@ -1,7 +1,11 @@
 
 # 48. 旋转图像
 
-## 分类
+## 相关标签
+
+- 数组
+- 数学
+- 矩阵
 
 ## 问题描述 
 
@@ -41,3 +45,35 @@
 
 ## 题解
 
+
+```ts
+/**
+ Do not return anything, modify matrix in-place instead.
+ */
+function rotate(matrix: number[][]): void { 
+    const n = matrix.length 
+    const tmp = deepCopyArray(matrix)
+    console.log('tmp===>', tmp)
+    for(let i=0;i<n;i++) {
+        for(let j=0;j<n;j++) {
+            matrix[j][n - 1 - i] = tmp[i][j]
+        }
+    }
+};
+
+
+function deepCopyArray(array) {
+  const copiedArray = [];
+  
+  for (let i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      copiedArray[i] = deepCopyArray(array[i]); // 递归拷贝子数组
+    } else {
+      copiedArray[i] = array[i]; // 拷贝非数组元素
+    }
+  }
+  
+  return copiedArray;
+}
+
+````

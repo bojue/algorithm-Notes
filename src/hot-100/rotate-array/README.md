@@ -1,7 +1,11 @@
 
 # 189. 轮转数组
 
-## 分类
+## 相关标签
+
+- 数组
+- 数学
+- 双指针
 
 ## 问题描述 
 
@@ -46,3 +50,23 @@
 
 ## 题解
 
+
+```ts
+var rotate = function(nums, k) {
+    k %= nums.length;
+    reverse(nums, 0, nums.length - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, nums.length - 1);
+
+    function reverse(nums, start, end) {
+        while (start < end) {
+            let temp = nums[end];
+            nums[end] = nums[start];
+            nums[start] = temp;
+            start++;
+            end--;
+        }
+    }
+};
+
+````

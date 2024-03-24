@@ -1,7 +1,12 @@
 
 # 124. 二叉树中的最大路径和
 
-## 分类
+## 相关标签
+
+- 树
+- 深度优先搜索
+- 动态规划
+- 二叉树
 
 ## 问题描述 
 
@@ -41,3 +46,43 @@
 
 ## 题解
 
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function maxPathSum(root: TreeNode | null): number {
+    let maxVal = -Infinity
+
+    function maxPathSumHelper(node) {
+        if(!node) {
+            return 0
+        }
+        const leftSum = maxPathSumHelper(node?.left)
+        const rightSum = maxPathSumHelper(node?.right)
+        maxVal = Math.max(
+            maxVal,
+            node.val,
+            leftSum + node.val,
+            leftSum + node.val + rightSum,
+            rightSum + node.val)
+
+        return Math.max(leftSum + node.val , rightSum + node.val, node.val)
+    }
+
+    maxPathSumHelper(root)
+
+    return maxVal
+};  
+````

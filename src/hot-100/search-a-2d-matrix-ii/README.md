@@ -1,7 +1,12 @@
 
 # 240. 搜索二维矩阵 II
 
-## 分类
+## 相关标签
+
+- 数组
+- 二分查找
+- 分治
+- 矩阵
 
 ## 问题描述 
 
@@ -44,3 +49,26 @@
 
 ## 题解
 
+
+```ts
+function searchMatrix(matrix: number[][], target: number): boolean {
+    const col = matrix.length 
+    const row = matrix[0].length 
+    let x = 0;
+    let y = row - 1
+
+    while(x < col && y >= 0 ) {
+        const isEqual = target === matrix[x][y]
+
+        if(isEqual) {
+            return true
+        } else if(target > matrix[x][y]) {
+            x++
+        } else {
+            y--
+        }
+    }
+
+    return false
+};
+````

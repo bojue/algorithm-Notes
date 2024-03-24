@@ -1,7 +1,11 @@
 
 # 438. 找到字符串中所有字母异位词
 
-## 分类
+## 相关标签
+
+- 哈希表
+- 字符串
+- 滑动窗口
 
 ## 问题描述 
 
@@ -41,7 +45,8 @@
 
 ## 题解
 
-```js
+
+```ts
 function findAnagrams(s: string, p: string): number[] {
     let sLen = s?.length 
     let pLen = p?.length
@@ -72,4 +77,4 @@ function findAnagrams(s: string, p: string): number[] {
 
     return result
 };
-```
+````

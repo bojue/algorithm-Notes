@@ -1,7 +1,12 @@
 
 # 79. 单词搜索
 
-## 分类
+## 相关标签
+
+- 数组
+- 字符串
+- 回溯
+- 矩阵
 
 ## 问题描述 
 
@@ -54,3 +59,60 @@
 
 ## 题解
 
+
+```ts
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+var exist = function(board, word) {
+    const row = board.length
+    const col = board[0].length
+    if(!row || !col) {
+        return false
+    }
+    if(!word.length) {
+        return true;
+    }
+ 
+    const dfs = function(i, j, k) {
+  
+        if(i< 0 || j< 0 || i>= row || j >= col || k >= word.length) {
+            return false
+        }  
+        const temp = board[i][j]
+        if(word[k] !== temp) {
+            return false
+        }
+
+        if(k === word.length -1) {
+            return true
+        }       
+ 
+        board[i][j] = null
+        const res = dfs(i+1, j, k+1) 
+        || dfs(i-1, j, k+1) 
+        || dfs(i, j+1, k+1)
+        || dfs(i, j-1, k+1) 
+
+        board[i][j] = temp
+
+        return res
+
+            
+    }
+
+    for(let i=0;i<row;i++) {
+        for(let j=0;j<col;j++) {
+           if(board[i][j] === word[0]) {
+                if(dfs(i,j, 0)) {
+                    return true
+                }
+           }
+        }
+    }
+
+    return false
+};
+````

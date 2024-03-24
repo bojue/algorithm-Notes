@@ -1,7 +1,12 @@
 
 # 208. 实现 Trie (前缀树)
 
-## 分类
+## 相关标签
+
+- 设计
+- 字典树
+- 哈希表
+- 字符串
 
 ## 问题描述 
 
@@ -45,3 +50,70 @@ trie.search("app");     // 返回 True
 
 ## 题解
 
+
+```ts
+class TrieNode {
+    children: Map<string, TrieNode>;
+    isEndOfWord: boolean;
+    constructor() {
+        this.children = new Map()
+        this.isEndOfWord = false
+    }
+}
+
+class Trie {
+    root: TrieNode
+    constructor() {
+        this.root = new TrieNode()
+    }
+
+    insert(word: string): void {
+        let currentNode = this.root 
+        for(let i=0;i<word.length;i++) {
+            const char = word[i]
+            let node = currentNode.children.get(char)
+            if(!node) {
+                node = new TrieNode()
+                currentNode.children.set(char, node)
+            }
+            currentNode = node 
+        } 
+        currentNode.isEndOfWord = true;  
+    }
+
+
+    search(word: string): boolean {
+        let currentNode = this.root 
+        for(let i=0;i<word.length;i++) {
+            const char = word[i]
+            const node = currentNode.children.get(char)
+            if(!node){
+                return false 
+            }
+            currentNode = node
+        }
+        return currentNode.isEndOfWord
+    }
+
+    startsWith(prefix: string): boolean {
+        let currentNode = this.root 
+        for(let i=0;i<prefix.length;i++) {
+            const char = prefix[i]
+            const node = currentNode.children.get(char)
+            if(!node){
+                return false 
+            }
+            currentNode = node
+        }
+        return true
+    }
+}
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * var obj = new Trie()
+ * obj.insert(word)
+ * var param_2 = obj.search(word)
+ * var param_3 = obj.startsWith(prefix)
+ */
+````

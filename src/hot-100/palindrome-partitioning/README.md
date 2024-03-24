@@ -1,7 +1,11 @@
 
 # 131. 分割回文串
 
-## 分类
+## 相关标签
+
+- 字符串
+- 动态规划
+- 回溯
 
 ## 问题描述 
 
@@ -32,3 +36,42 @@
 
 ## 题解
 
+
+```ts
+function partition(s: string): string[][] {
+    const result:string[][]  = []
+    const current = []
+    backtrack(0, s, current, result);
+    return result 
+};
+
+function backtrack(start: number, s: string, current: string[], result:string[][] ) {
+    if(start === s.length ) {
+        result.push([...current])
+        return 
+    }
+
+    for(let i= start;i<s.length;i++) {
+        const str = s.substring(start, i+1)
+        if(isPalindrome(str)) {
+            current.push(str)
+            backtrack(i+1, s, current, result)
+            current.pop()
+        }
+    }
+}
+
+function isPalindrome(s: string) {
+    let left = 0;
+    let right = s.length -1 
+    while(left < right) {
+        if(s[left] !== s[right]) {
+            return false
+        }
+
+        left++
+        right--
+    }
+    return true
+}
+````

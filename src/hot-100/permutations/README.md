@@ -1,7 +1,10 @@
 
 # 46. 全排列
 
-## 分类
+## 相关标签
+
+- 数组
+- 回溯
 
 ## 问题描述 
 
@@ -40,3 +43,30 @@
 
 ## 题解
 
+
+```ts
+function permute(nums: number[]): number[][] {
+    const result: number[][] = []
+    bracktrack(nums, [], result)
+    return result
+    
+};
+
+function bracktrack(nums: number[], current: number[], result: number[][]) {
+    if(current.length === nums.length) {
+        result.push([...current])
+        return 
+    }
+
+    for(let i=0;i<nums.length;i++) {
+        if(current.includes(nums[i])) {
+            continue;
+        }
+        current.push(nums[i])
+        bracktrack(nums, current, result)
+        current.pop()
+    
+    }
+
+}
+````

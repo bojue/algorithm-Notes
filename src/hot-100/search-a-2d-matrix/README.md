@@ -1,7 +1,11 @@
 
 # 74. 搜索二维矩阵
 
-## 分类
+## 相关标签
+
+- 数组
+- 二分查找
+- 矩阵
 
 ## 问题描述 
 
@@ -43,3 +47,33 @@
 
 ## 题解
 
+
+```ts
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+    if(!matrix.length) {
+        return false
+    }
+    let x = matrix.length -1
+
+    let y = 0
+    while(x>=0 && y <matrix[0].length) {
+        const item = matrix[x][y]
+        if(item === target) {
+            return true
+        } else if(item > target) {
+            x--
+        } else {
+            y++
+        }
+    }
+
+    return false
+
+    
+};
+````
