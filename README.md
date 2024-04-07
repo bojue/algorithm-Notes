@@ -65,7 +65,7 @@ python3 script-statistics-readme.py
 
 
 
-统计数据 => 总数量：<font color="#336df4" >100</font>  , 已经完成 <font color="#1dddae" >95</font> , 百分比例 <font color="#1dddae" >95%</font>
+统计数据 => 总数量：<font color="#336df4" >100</font>  , 已经完成 <font color="#1dddae" >96</font> , 百分比例 <font color="#1dddae" >96%</font>
 
 ## 题目列表
 [54. 螺旋矩阵](src/hot-100/spiral-matrix/README.md)
@@ -113,6 +113,8 @@ python3 script-statistics-readme.py
 [295. 数据流的中位数](src/hot-100/find-median-from-data-stream/README.md)
 
 [114. 二叉树展开为链表](src/hot-100/flatten-binary-tree-to-linked-list/README.md)
+
+[347. 前 K 个高频元素](src/hot-100/top-k-frequent-elements/README.md)
 
 [121. 买卖股票的最佳时机](src/hot-100/best-time-to-buy-and-sell-stock/README.md)
 

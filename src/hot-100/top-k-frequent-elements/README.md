@@ -47,5 +47,24 @@
 
 
 ```ts
+function topKFrequent(nums: number[], k: number): number[] {
+    if(k < 0 || k > nums.length) {
+        return 
+    }
+    const map = new Map()
+    const result = []
+    for(let i=0;i<nums.length ;i++) {
+        const item = nums[i]
+        map.set(item,  map.has(item) ? map.get(item) + 1 : 1)
+    }
+    const values = [...map.values()].sort((a, b) => b-a)
+    const value = values[k-1]
 
+    map.forEach((val, key) => {
+        if(val >= value ) {
+            result.push(key)
+        }
+    })
+    return result
+};
 ````
